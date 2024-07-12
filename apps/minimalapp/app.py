@@ -10,6 +10,6 @@ def index():
     return "Hello,Flaskbook!" 
 
 
-@app.route("/hello")
+@app.route("/hello",methods=["POST"],endpoint="hello-endpoint")
 def hello():
     return "Hello,World!"
