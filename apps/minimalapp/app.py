@@ -1,11 +1,14 @@
 from flask import Flask,flash
 from flask import render_template,request,url_for,redirect
 from email_validator import validate_email,EmailNotValidError
+from flask_debugtoolbar import DebugToolbarExtension
 
 
 app=Flask(__name__)
     # SECRET_KEYを追加する
 app.config['SECRET_KEY'] ="2AZSMss3p5QPbcY2hBsJ"
+app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
+toolbar=DebugToolbarExtension(app)
 
 if __name__=="__main__":
     app.run(debug=True)
