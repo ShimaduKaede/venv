@@ -29,6 +29,10 @@ def contact():
 @app.route("/contact/complate",methods =["GET","POST"])
 def contact_complate():
     if request.method=="POST":
+        # form属性を利用して値の取得
+        username=request.form["username"]
+        email=request.form["email"]
+        description=request.form["description"]
         # メール送信
         
         # contactエンドポイントまでリダイレクト
