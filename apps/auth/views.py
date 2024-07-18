@@ -42,7 +42,7 @@ def signup():
         # GETパラメータにnextキーが存在し、値がない場合はユーザーの一覧ページへ
         next_ = request.args.get('next')
         if next_ is None or not next_.startswith('/'):
-            next_ = url_for('crud.users')
+            next_ = url_for('dt.index')
         return redirect(next_)
     return render_template('auth/signup.html', form=form)
 
@@ -54,9 +54,9 @@ def login():
         # メールアドレスからユーザーを取得する
         user = User.query.filter_by(email=form.email.data).first()
         # ユーザーが存在し、パスワードが一致する場合はログインを許可する
-        if user is not None or user.verify_password(form.password.data):
+        if user is not None and user.verify_password(form.password.data):
             login_user(user) # ユーザー情報をセッションに格納する
-            return redirect(url_for('crud.users'))
+            return redirect(url_for('dt.index'))
         # ログイン失敗メッセージを設定する
         flash('メールアドレスかパスワードが不正です')
     return render_template('auth/login.html', form=form)
