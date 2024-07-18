@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
     
     # メールアドレス重複チェックをする
     def is_duplicate_email(self):
-        return User.query.filter_by(email = self.email) is not None
+        return User.query.filter_by(email = self.email).first() is not None
     
 # ログインしているユーザー情報を取得する関数を作成する
 @login_manager.user_loader
